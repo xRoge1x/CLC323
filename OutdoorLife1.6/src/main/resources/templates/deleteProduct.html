@@ -1,0 +1,27 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/defaultTemplate">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Product</title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+    <div class="container">
+        <h2>Delete Product</h2>
+
+        <p>Are you sure you want to delete the product with ID <strong th:text="${product.productId}"></strong> and name <strong th:text="${product.productName}"></strong>?</p>
+
+        <form th:action="@{/products/} + ${product.productId} + /deleteProduct" th:method="post">
+    		<input type="hidden" name="_method" value="DELETE"/>
+    		<button type="submit" class="btn btn-danger">Yes, Delete</button>
+    		<a th:href="@{/products/createdProducts}" class="btn btn-default">Cancel</a>
+		</form>
+    </div>
+</div>
+
+</body>
+
+</html>
