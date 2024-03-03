@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+</head>
+<body>
+	<div layout:fragment="content">
+    <h1>Shopping Cart</h1>
+    
+    <table style="border-collapse: separate; border-spacing: 0 10px; width: 50%; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item, itemIndex : ${cart.items}" style="background-color: #fff; border-radius: 10px;">
+                <td style="padding: 10px;"> <!-- Adjust padding as needed -->
+                    <span th:text="${item.product.productName}"></span>
+                </td>
+                <td style="padding: 10px;"> <!-- Adjust padding as needed -->
+                    <span th:text="${item.product.price}"></span>
+                </td>
+                <td style="padding: 10px;"> <!-- Adjust padding as needed -->
+                    <span th:text="${item.quantity}"></span>
+                </td>
+                <td style="padding: 10px;"> <!-- Adjust padding as needed -->
+                    <form th:action="@{/cart/remove/{index}(index=${itemIndex.index})}" method="post">
+                        <button type="submit" style="margin-top: 10px; padding: 5px 10px; border: none; border-radius: 5px; background-color: #007bff; color: #fff; cursor: pointer;">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table>
+		<td style="padding: 10px;"> <!-- Adjust padding as needed -->
+        	<form th:action="@{/cart/add}">
+        		<button type="submit" style="margin-top: 10px; padding: 5px 10px; border: none; border-radius: 5px; background-color: #007bff; color: #fff; cursor: pointer;">Add</button>
+    		</form>
+        </td>
+		<td style="padding: 10px;"> <!-- Adjust padding as needed -->
+        	<form th:action="@{/cart/checkout}" method="post">
+        		<button type="submit" style="margin-top: 10px; padding: 5px 10px; border: none; border-radius: 5px; background-color: #007bff; color: #fff; cursor: pointer;">Checkout</button>
+    		</form>
+        </td>
+	</table>
+    </div>
+</body>
+</html>

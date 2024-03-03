@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/defaultTemplate">
+<head>
+    <meta charset="UTF-8">
+    <title>Add to Cart</title>
+</head>
+<body>
+	<div layout:fragment="content">
+    <h1>Add Item to Cart</h1>
+    
+    <form th:action="@{/cart/add}" method="post">
+        <label for="productId">Product:</label>
+        <select name="productId" id="productId">
+            <!-- Replace this with a loop to dynamically populate options from your database -->
+            <option value="1">Product 1</option>
+            <option value="2">Product 2</option>
+            <!-- Add more options as needed -->
+        </select>
+        <br>
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" value="1">
+        <br>
+        <button type="submit" style="margin-top: 10px; padding: 5px 10px; border: none; border-radius: 5px; background-color: #007bff; color: #fff; cursor: pointer;">Add to Cart</button>
+    </form>
+    </div>
+</body>
+</html>
